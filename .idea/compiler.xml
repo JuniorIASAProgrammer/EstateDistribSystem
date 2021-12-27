@@ -6,15 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="estate" />
         <module name="service-user" />
         <module name="service-deal" />
+        <module name="service-estate" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="estate" target="1.5" />
-      <module name="service-deal" target="1.5" />
-      <module name="service-user" target="1.5" />
+      <module name="service-deal" target="17" />
+      <module name="service-estate" target="17" />
+      <module name="service-user" target="17" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="service-deal" options="-parameters" />
+      <module name="service-estate" options="-parameters" />
+      <module name="service-user" options="-parameters" />
+    </option>
   </component>
 </project>

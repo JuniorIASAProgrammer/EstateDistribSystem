@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DistSystem.iml" filepath="$PROJECT_DIR$/.idea/DistSystem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/estate/estate.iml" filepath="$PROJECT_DIR$/estate/estate.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-deal/service-deal.iml" filepath="$PROJECT_DIR$/service-deal/service-deal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-estate/service-estate.iml" filepath="$PROJECT_DIR$/service-estate/service-estate.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-user/service-user.iml" filepath="$PROJECT_DIR$/service-user/service-user.iml" />
     </modules>
   </component>
