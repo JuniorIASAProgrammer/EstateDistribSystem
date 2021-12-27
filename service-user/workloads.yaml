@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: service-user
+spec:
+  spelector:
+    app: service-user
+  type: NodePort
+  ports:
+    - name: http
+      port: 8081
+      nodePort: 30001
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-user
+spec:
+  spelector:
+    matchLabels:
+      app: service-user
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-user
+    spec:
+      containers:
+        - name: server
+          image: vitalyaboroda/service-user
+          ports:
+            - name: http
+              containerPost: 8081

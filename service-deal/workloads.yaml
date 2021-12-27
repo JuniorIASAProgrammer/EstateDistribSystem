@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: service-deal
+  spelector:
+    app: service-deal
+  type: NodePort
+  ports:
+    - name: http
+      port: 8083
+      nodePort: 30003
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-deal
+spec:
+  spelector:
+    matchLabels:
+      app: service-deal
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-deal
+    spec:
+      containers:
+        - name: server
+          image: vitalyaboroda/service-deal
+          ports:
+            - name: http
+              containerPost: 8083
