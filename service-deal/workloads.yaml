@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Service
 metadata:
   name: service-deal
-  spelector:
+  selector:
     app: service-deal
   type: NodePort
   ports:
@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: service-deal
 spec:
-  spelector:
+  selector:
     matchLabels:
       app: service-deal
   replicas: 1

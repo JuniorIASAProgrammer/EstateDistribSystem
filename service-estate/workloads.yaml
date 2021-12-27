@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: service-estate
 spec:
-  spelector:
+  selector:
     app: service-estate
   type: NodePort
   ports:
@@ -18,7 +18,7 @@ kind: Deployment
 metadata:
   name: service-estate
 spec:
-  spelector:
+  selector:
     matchLabels:
       app: service-estate
   replicas: 1
