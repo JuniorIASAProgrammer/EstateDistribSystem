@@ -17,7 +17,7 @@ public class Estate {
     @Column(name = "dealtype")
     private EstateDealEnum dealType;
 
-    @Column(name = "owner_id")
+    @Column(name = "owner")
     private long owner;
 
     @Column(name = "city")
@@ -38,7 +38,7 @@ public class Estate {
         this.owner = owner;
         this.city = description.getCity();
         this.district = description.getDistrict();
-        this.address = description.getAdress();
+        this.address = description.getAddress();
     }
 
     public long getId() {

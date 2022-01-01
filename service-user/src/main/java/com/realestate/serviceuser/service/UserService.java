@@ -2,12 +2,12 @@ package com.realestate.serviceuser.service;
 
 import com.realestate.serviceuser.api.dto.UserDto;
 import com.realestate.serviceuser.api.enums.BanEnum;
-import com.realestate.serviceuser.repo.RoleRepo;
+import com.realestate.serviceuser.api.enums.RoleEnum;
 import com.realestate.serviceuser.repo.UserRepo;
-import com.realestate.serviceuser.repo.model.Role;
 import com.realestate.serviceuser.repo.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.nio.entity.NStringEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +22,6 @@ import java.util.regex.Pattern;
 public class UserService {
 
     private final UserRepo userRepo;
-    private final RoleRepo roleRepo;
 
     public List<User> getAll(){
         return userRepo.findAll();
@@ -40,6 +39,11 @@ public class UserService {
         else return maybeUser.get();
     }
 
+    public void createFromLine(String name, String surname, String email, String password, String phone, String role) {
+        User user = new User(name, surname, email, password, phone, RoleEnum.valueOf(role));
+        userRepo.save(user);
+    }
+
     public long create(UserDto newUser) {
         String name = newUser.getName();
         String surname = newUser.getSurname();
@@ -47,7 +51,7 @@ public class UserService {
         String password = newUser.getPassword();
         String repeatPassword = newUser.getRepeatPassword();
         String phone = newUser.getPhone();
-        Role role = roleRepo.findByName(newUser.getRole());
+        RoleEnum role = RoleEnum.valueOf(newUser.getRole());
 
         Pattern p = Pattern.compile("^\\d{10}$");
         Matcher m = p.matcher(phone);

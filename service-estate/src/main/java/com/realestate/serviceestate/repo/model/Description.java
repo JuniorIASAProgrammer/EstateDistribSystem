@@ -31,7 +31,7 @@ public class Description {
         this.district = district;
     }
 
-    public String getAdress() {
+    public String getAddress() {
         return address;
     }
 

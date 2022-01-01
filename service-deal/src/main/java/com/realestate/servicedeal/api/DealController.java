@@ -40,9 +40,9 @@ public class DealController {
     }
 
     //    Make an offer - for realtor
-    @PostMapping("/createOffer/realtorId={reatorId}/estateId={estateId}")
-    public ResponseEntity<Void> createOffer(@PathVariable long estateId, @PathVariable long realtorId) {
-        long id = dealService.createOffer(estateId, realtorId);
+    @PostMapping("/createOffer/realtor={reatorEmail}/estateId={estateId}")
+    public ResponseEntity<Void> createOffer(@PathVariable long estateId, @PathVariable String realtorEmail) {
+        long id = dealService.createOffer(estateId, realtorEmail);
         String location = String.format("/offerList/%d", id);
         return ResponseEntity.created(URI.create(location)).build();
     }

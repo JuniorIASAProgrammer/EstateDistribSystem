@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public final class EstateDto {
     private EstateDealEnum dealType;
     private Description description;
-    private long owner;
+    private String owner;
 }

@@ -7,6 +7,7 @@ import com.realestate.servicedeal.repo.model.Deal;
 import com.realestate.servicedeal.repo.model.Offer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class DealService {
 
     private final DealRepo dealRepo;
     private final OfferRepo offerRepo;
+    RestTemplate restTemplate = new RestTemplate();
 
     public List<Offer> fetchByEstateId(long estateId) {
         return offerRepo.findAllByEstate(estateId);
@@ -50,7 +52,8 @@ public class DealService {
         dealRepo.save(dealToCancel);
     }
 
-    public long createOffer(long estateId, long realtorId) {
+    public long createOffer(long estateId, String realtor) {
+        long realtorId = restTemplate.getForObject("http://127.0.0.1:30001/EstateMarketplace/user/getByEmail/email={email}", Long.class, realtor);
         Offer newOffer = new Offer(estateId, realtorId);
         offerRepo.save(newOffer);
         return newOffer.getId();

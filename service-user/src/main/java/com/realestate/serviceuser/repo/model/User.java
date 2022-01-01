@@ -1,6 +1,7 @@
 package com.realestate.serviceuser.repo.model;
 
 import com.realestate.serviceuser.api.enums.BanEnum;
+import com.realestate.serviceuser.api.enums.RoleEnum;
 
 import javax.persistence.*;
 
@@ -32,13 +33,14 @@ public class User {
     @Column(name = "ban")
     private BanEnum ban;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private RoleEnum role;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, String password, String phone, Role role) {
+    public User(String name, String surname, String email, String password, String phone, RoleEnum role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -104,11 +106,11 @@ public class User {
         this.ban = ban;
     }
 
-    public Role getRole() {
+    public RoleEnum getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(RoleEnum role) {
         this.role = role;
     }
 }

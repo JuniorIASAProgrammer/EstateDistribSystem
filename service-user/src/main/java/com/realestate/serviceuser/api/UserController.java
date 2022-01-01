@@ -38,10 +38,10 @@ public class UserController {
     }
 
     @GetMapping("/getByEmail/email={email}")
-    public ResponseEntity<User> getByEmail(@PathVariable String email) {
+    public ResponseEntity<Long> getByEmail(@PathVariable String email) {
         try {
             final User user = userService.getByEmail(email);
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(user.getId());
         }
         catch (IllegalArgumentException e){
             return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
