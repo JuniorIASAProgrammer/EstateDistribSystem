@@ -30,7 +30,7 @@ public final class EstateService {
         EstateDealEnum dealType = estate.getDealType();
         Description description = estate.getDescription();
         String email = estate.getOwner();
-        long owner = restTemplate.getForObject("http://127.0.0.1:30001/EstateMarketplace/user/getByEmail/email={email}", Long.class, email);
+        long owner = restTemplate.getForObject("http://172.29.44.47:30001/EstateMarketplace/user/getByEmail/email={email}", Long.class, email);
         Estate newEstate = new Estate(dealType, description, owner);
         Estate savedEstate = estateRepo.save(newEstate);
         return savedEstate.getId();
@@ -40,12 +40,12 @@ public final class EstateService {
         EstateDealEnum dealType = estateDto.getDealType();
         String city = estateDto.getDescription().getCity();
         String district = estateDto.getDescription().getDistrict();
-        String adress = estateDto.getDescription().getAddress();
+        String address = estateDto.getDescription().getAddress();
         final Estate maybeEstate = estateRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Estate not found"));
         if (dealType!=null && !dealType.toString().isEmpty() && dealType!=maybeEstate.getDealtype()) maybeEstate.setDealType(dealType);
         if (city!=null && !city.isEmpty()) maybeEstate.setCity(city);
         if (district!=null && !district.isEmpty()) maybeEstate.setDistrict(district);
-        if (adress!=null && !adress.isEmpty()) maybeEstate.setAddress(adress);
+        if (address!=null && !address.isEmpty()) maybeEstate.setAddress(address);
         estateRepo.save(maybeEstate);
     }
 

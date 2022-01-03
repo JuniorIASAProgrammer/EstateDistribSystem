@@ -53,13 +53,14 @@ public class DealService {
     }
 
     public long createOffer(long estateId, String realtor) {
-        long realtorId = restTemplate.getForObject("http://127.0.0.1:30001/EstateMarketplace/user/getByEmail/email={email}", Long.class, realtor);
+        long realtorId = restTemplate.getForObject("http://172.29.44.47:30001/EstateMarketplace/user/getByEmail/email={email}", Long.class, realtor);
         Offer newOffer = new Offer(estateId, realtorId);
         offerRepo.save(newOffer);
         return newOffer.getId();
     }
 
-    public void deleteOffer(long estateId, long realtorId) {
+    public void deleteOffer(long estateId, String realtorEmail) {
+        long realtorId = restTemplate.getForObject("http://172.29.44.47:30001/EstateMarketplace/user/getByEmail/email={email}", Long.class, realtorEmail);
         offerRepo.deleteByEstateAndRealtor(estateId, realtorId);
     }
 }

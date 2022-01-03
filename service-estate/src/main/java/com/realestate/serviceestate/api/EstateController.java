@@ -56,6 +56,6 @@ public class EstateController {
     @DeleteMapping("/delete/id={id}")
     public ResponseEntity<String> delete(@PathVariable long id){
         estateService.delete(id);
-        return new ResponseEntity<>("Profile deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Estate deleted", HttpStatus.OK);
     }
 }

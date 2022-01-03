@@ -48,9 +48,9 @@ public class DealController {
     }
 
 //    Cancel offer - for realtor
-    @DeleteMapping("/deleteOffer/realtorId={realtorId}/estateId={estateId}")
-    public ResponseEntity<String> deleteOffer(@RequestBody long realtorId, @RequestBody long estateId) {
-        dealService.deleteOffer(estateId, realtorId);
+    @DeleteMapping("/deleteOffer/realtor={reatorEmail}/estateId={estateId}")
+    public ResponseEntity<String> deleteOffer(@RequestBody String realtorEmail, @RequestBody long estateId) {
+        dealService.deleteOffer(estateId, realtorEmail);
         return new ResponseEntity<>("Offer cancelled", HttpStatus.OK);
     }
 
